@@ -1,2 +1,2 @@
-# websites
-getting started to run all websites locally
+starting point to run all websites on your local machine
+
