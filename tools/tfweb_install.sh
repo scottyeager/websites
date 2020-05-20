@@ -23,5 +23,6 @@ else
     exist 1
 fi
 
-chmod +x ~/code/github/threebotserver/publishingtools/build.sh
- ~/code/github/threebotserver/publishingtools/build.sh
+cd ~/code/github/threebotserver/publishingtools
+chmod +x ./build.sh
+./build.sh
