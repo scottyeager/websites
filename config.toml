@@ -161,13 +161,13 @@ branchswitch = true
 srcdir = ""
 environment = "testing"
 
-[[wiki]]
-name = "blog"
-url = "git@github.com:threefoldfoundation/blog_threefold.git"
+name = "tfblog"
+title = "Threefold Blog"
+url = "https://github.com/threefoldfoundation/blog_threefold"
 path = ""
 autocommit = false
 branch = "development"
-branchswitch = false
+branchswitch = true
 srcdir = ""
+#environment name (for example:  production, staging, testing)
 environment = "testing"
-auth = true
