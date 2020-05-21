@@ -2,10 +2,10 @@
 set -ex
 
 # this script to install tfweb and conscious_internet
+# tfweb port is 3000
+# conscious internet port is 3001
 # you can set conscious_internet_port below if not set , default is 3001
 CONSCIOUS_INTERNET_PORT=
-# tfweb port is 3000
-
 # below vars are required by conscious_internet
 export SEND_GRID_KEY=
 export SUPPORT_EMAIL_FROM=
@@ -109,13 +109,7 @@ echo 'Error: tfweb did not build' >&2
 exit 1
 fi
 
-# start tfweb
-if tmux ls | grep tfweb >/dev/null 2>&1 ; then
-    echo tmux session tfweb is exist, closing it ..
-    tmux kill-session -t tfweb
-fi
-cd $DEST2/publishingtools/deployment
-tmux new -s "tfweb" -d ; tmux send-keys -t "tfweb" "tfweb -c threefoldwebsitesandwikis.toml" C-m
+
 
 
 # start conscious internet websie
@@ -146,17 +140,3 @@ else
     git clone "git@github.com:threefoldfoundation/www_threefold_ecosystem"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
-cd $DEST/tfwebserver_projects_people && ./build.sh
-
-# start conscious internet in port 3001 if not set yet
-[[ -z "${CONSCIOUS_INTERNET_PORT}" ]] &&  export CONSCIOUS_INTERNET_PORT=3001
-sed -i "s/walker \-p.*/walker \-p $CONSCIOUS_INTERNET_PORT/g" $DEST/tfwebserver_projects_people/run.sh
-
-cd $DEST/tfwebserver_projects_people
-
-if tmux ls | grep consciousinternet >/dev/null 2>&1 ; then
-    echo tmux session consciousinternet is exist, closing it ..
-    tmux kill-session -t consciousinternet
-fi
-
-tmux new -s "consciousinternet" -d ; tmux send-keys -t "consciousinternet"  "bash run.sh" C-m
