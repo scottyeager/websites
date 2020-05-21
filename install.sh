@@ -10,6 +10,7 @@ fi
 export DEST=~/tfweb/testing/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     echo " - WEBSITES DIR ALREADY THERE"
+    git pull
 else
     mkdir -p $DEST
     cd $DEST
