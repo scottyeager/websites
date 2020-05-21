@@ -1,6 +1,11 @@
 #!/bin/bash
 set -ex
 
+# this script to install tfweb and conscious_internet in ubuntu 
+# you can set conscious_internet_port below if not set , default is 3001
+CONSCIOUS_INTERNET_PORT=
+# tfweb port is 3000
+
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     apt-get install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev wget
@@ -55,6 +60,61 @@ echo 'Error: tfweb did not build' >&2
 exit 1
 fi
 
-cd $DEST/websites
-tfweb -c config.toml
+# start tfweb
+if tmux ls | grep tfweb >/dev/null 2>&1 ; then
+    echo tmux session tfweb is exist, closing it ..
+    tmux kill-session -t tfweb
+fi
+cd $DEST2/publishingtools/deployment
+tmux new -s "tfweb" -d ; tmux send-keys -t "tfweb" "tfweb -c threefoldwebsitesandwikis.toml" C-m
 
+
+# start conscious internet websie
+
+# install nodejs
+if ! [ -x "$(command -v node)" ]; then
+
+  curl -sL https://deb.nodesource.com/setup_14.x | bash -  ; \
+	apt-get install nodejs -y
+
+fi
+
+# currnet working branch as per hamdy
+
+[[ -z "${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH}" ]] &&  export TFWEBSERVER_PROJECTS_PEOPLE_BRANCH=development
+[[ -z "${PUBLIC_REPO_BRANCH}" ]] &&  export PUBLIC_REPO_BRANCH=master
+
+if [ -d "$DEST/tfwebserver_projects_people" ] ; then
+    echo " - tfwebserver_projects_people DIR ALREADY THERE, pulling it"
+    git pull
+else
+    mkdir -p $DEST
+    cd $DEST
+    git clone "git@github.com:threefoldfoundation/tfwebserver_projects_people"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} tfwebserver_projects_people
+fi
+
+if [ -d "$DEST/tfwebserver_projects_people/public/threefold" ] ; then
+    echo " - threefold DIR ALREADY THERE, pulling it"
+    git pull
+else
+    mkdir -p $DEST/tfwebserver_projects_people/public/threefold
+    cd  $DEST/tfwebserver_projects_people/public
+    git clone "git@github.com:threefoldfoundation/www_threefold_ecosystem"  -b  ${PUBLIC_REPO_BRANCH} threefold
+fi
+
+
+cd $DEST/tfwebserver_projects_people && ./build.sh
+
+# start conscious internet in port 3001 if not set yet
+[[ -z "${CONSCIOUS_INTERNET_PORT}" ]] &&  export CONSCIOUS_INTERNET_PORT=3001
+echo $CONSCIOUS_INTERNET_PORT
+sed -i "s/\-p 80/\-p $CONSCIOUS_INTERNET_PORT/g" $DEST/tfwebserver_projects_people/run.sh
+
+cd $DEST/tfwebserver_projects_people
+
+if tmux ls | grep consciousinternet >/dev/null 2>&1 ; then
+    echo tmux session consciousinternet is exist, closing it ..
+    tmux kill-session -t consciousinternet
+fi
+
+tmux new -s "consciousinternet" -d ; tmux send-keys -t "consciousinternet"  "bash run.sh" C-m
