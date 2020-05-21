@@ -150,8 +150,7 @@ cd $DEST/tfwebserver_projects_people && ./build.sh
 
 # start conscious internet in port 3001 if not set yet
 [[ -z "${CONSCIOUS_INTERNET_PORT}" ]] &&  export CONSCIOUS_INTERNET_PORT=3001
-echo $CONSCIOUS_INTERNET_PORT
-sed -i 's/walker \-p.*/\walker -p $CONSCIOUS_INTERNET_PORT/g' $DEST/tfwebserver_projects_people/run.sh
+sed -i "s/walker \-p.*/walker \-p $CONSCIOUS_INTERNET_PORT/g" $DEST/tfwebserver_projects_people/run.sh
 
 cd $DEST/tfwebserver_projects_people
 
