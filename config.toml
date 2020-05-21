@@ -72,7 +72,7 @@ auth = true
 [[wiki]]
 name = "sdk"
 title = "Grid Manual"
-url = "git@github.com:threefoldfoundation/info_tfgridsdk"
+url = "git@github.com:threefoldfoundation/info_tfgridsdk.git"
 path = ""
 autocommit = false
 branch = "development"
