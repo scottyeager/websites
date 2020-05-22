@@ -172,4 +172,5 @@ branchswitch = true
 srcdir = ""
 #environment name (for example:  production, staging, testing)
 environment = "testing"
-domain = "localhost/blog"
+domain = "blog2.threefold.io"
+
