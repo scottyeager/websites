@@ -48,6 +48,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     brew install crystal
     brew install git
+    # brew install node
     fi
     # install nodejs
     if ! [ -x "$(command -v node)" ]; then
@@ -81,7 +82,9 @@ fi
 cd $DEST/websites
 
 rm -f /usr/local/bin/tfweb 2>&1 > /dev/null
+rm -f /usr/local/bin/tfeco 2>&1 > /dev/null
 rm -f /usr/bin/tfweb 2>&1 > /dev/null
+rm -f /usr/bin/tfeco 2>&1 > /dev/null
 
 
 if ! [ -x "$(command -v crystal)" ]; then
@@ -140,7 +143,22 @@ else
     git clone "git@github.com:threefoldfoundation/www_threefold_ecosystem"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
+# #if npm installed then will build the tfwebserver project
+# if [ -x "$(command -v npm)" ]; then
+# cd $DEST/tfwebserver_projects_people
+# sh build-ui.sh
+# fi
+
+cd $DEST/tfwebserver_projects_people
+sh build.sh
+
+if ! [ -x "$(command -v tfeco)" ]; then
+echo 'Error: tfeco not installed' >&2
+exit 1
+fi
+
+
 echo ' - WEBSITES DIR: $DEST/websites'
 
 cd $DEST/websites
-
+sh start.sh
