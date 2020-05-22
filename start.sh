@@ -14,21 +14,6 @@ tmux new-window -t websites:1 -n ecosystem
 # tmux select-window -t:0
 tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_ecosystem.sh' Enter
 
-# set +e
-# tmux capture-pane -t 0 -p | grep 'Kemal is ready to lead at http://0.0.0.0:3002'
-# if $1; then
-#     echo "ECOSYSTEM WEBSITE DID NOT START" >&2
-# fi
-
-# set +e
-# while tmux capture-pane -t 0 -p | grep -nE 'Kemal is ready to lead at http://0.0.0.0:3002'
-# do
-#     sleep 1
-#     echo "waiting for ecosystem website to start..."
-# done
-
-
-#!/bin/bash
 sleep 1
 tmux select-window -t "bash"
 
@@ -63,8 +48,7 @@ echo
 echo " - ALL WEBSITES OK"
 echo
 
-# while grep "sunday" file.txt > /dev/null;
-# do
-#     sleep 1
-#     echo "working..."
-# done
+if [[ "$OSTYPE" == "darwin"* ]]; then
+open http://localhost:3000/
+open http://localhost:3001/
+fi
