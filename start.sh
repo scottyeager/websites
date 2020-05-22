@@ -25,7 +25,7 @@ while true ; do
     echo " - TFWEB WEBSITE UP!"
     break
   fi
-  echo "Waiting for tfweb website to start..."
+  echo "Waiting for tfweb website to start... (can take a long while first time, pulling all website content)"
   sleep 1
 done
 
