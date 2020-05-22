@@ -115,7 +115,7 @@ fi
 # start conscious internet websie
 
 
-# currnet working branch as per hamdy
+# current working branch as per hamdy
 
 [[ -z "${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH}" ]] &&  export TFWEBSERVER_PROJECTS_PEOPLE_BRANCH=development
 [[ -z "${PUBLIC_REPO_BRANCH}" ]] &&  export PUBLIC_REPO_BRANCH=master
@@ -139,4 +139,8 @@ else
     cd  $DEST/tfwebserver_projects_people/public
     git clone "git@github.com:threefoldfoundation/www_threefold_ecosystem"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
+
+echo ' - WEBSITES DIR: $DEST/websites'
+
+cd $DEST/websites
 
