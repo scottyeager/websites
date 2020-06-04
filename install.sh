@@ -54,6 +54,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! [ -x "$(command -v node)" ]; then
     brew install node
     fi
+    # install tmux
+    if ! [ -x "$(command -v tmux)" ]; then
+    brew install tmux
+    fi
 
 fi
 
@@ -123,33 +127,33 @@ fi
 [[ -z "${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH}" ]] &&  export TFWEBSERVER_PROJECTS_PEOPLE_BRANCH=development
 [[ -z "${PUBLIC_REPO_BRANCH}" ]] &&  export PUBLIC_REPO_BRANCH=master
 
-if [ -d "$DEST/tfwebserver_projects_people" ] ; then
-    echo " - tfwebserver_projects_people DIR ALREADY THERE, pulling it"
-    cd $DEST/tfwebserver_projects_people
+if [ -d "$DEST/www_conscious_internet" ] ; then
+    echo " - www_conscious_internet DIR ALREADY THERE, pulling it"
+    cd $DEST/www_conscious_internet
     git pull
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "git@github.com:threefoldfoundation/tfwebserver_projects_people"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} tfwebserver_projects_people
+    git clone "git@github.com:threefoldfoundation/www_conscious_internet"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} www_conscious_internet
 fi
 
-if [ -d "$DEST/tfwebserver_projects_people/public/threefold" ] ; then
+if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
     echo " - threefold DIR ALREADY THERE, pulling it"
-    cd $DEST/tfwebserver_projects_people/public/threefold
+    cd $DEST/www_conscious_internet/public/threefold
     git pull
 else
-    mkdir -p $DEST/tfwebserver_projects_people/public/threefold
-    cd  $DEST/tfwebserver_projects_people/public
-    git clone "git@github.com:threefoldfoundation/www_threefold_ecosystem"  -b  ${PUBLIC_REPO_BRANCH} threefold
+    mkdir -p $DEST/www_conscious_internet/public/threefold
+    cd  $DEST/www_conscious_internet/public
+    git clone "git@github.com:threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
 # #if npm installed then will build the tfwebserver project
 # if [ -x "$(command -v npm)" ]; then
-# cd $DEST/tfwebserver_projects_people
+# cd $DEST/www_conscious_internet
 # sh build-ui.sh
 # fi
 
-cd $DEST/tfwebserver_projects_people
+cd $DEST/www_conscious_internet
 sh build.sh
 
 if ! [ -x "$(command -v tfeco)" ]; then
