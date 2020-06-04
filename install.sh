@@ -19,7 +19,7 @@ fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
-    apt-get install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev wget
+    apt-get install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev wget tmux
 
     if ! [ -x "$(command -v crystal)" ]; then
         curl -sSL https://dist.crystal-lang.org/apt/setup.sh |  bash ; \
@@ -196,4 +196,4 @@ fi
 echo ' - WEBSITES DIR: $DEST/websites'
 
 cd $DEST/websites
-sh start.sh
+bash start.sh

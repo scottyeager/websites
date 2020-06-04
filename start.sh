@@ -4,7 +4,7 @@ tmux kill-session -t websites > /dev/null 2>&1 && echo ""
 
 export DEST=~/tfweb/testing/github/threefoldfoundation/websites
 
-if ! [ -x "$(command -v brew)" ]; then
+if ! [ -x "$(command -v tfweb )" ]; then
 echo 'Error: tfweb has not been installed' >&2
 exit 1
 fi
