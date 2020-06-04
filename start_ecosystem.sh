@@ -5,5 +5,4 @@ exit 1
 fi
 DEST=~/tfweb/testing/github/threefoldfoundation/www_conscious_internet
 cd $DEST
-mv walker tfeco
-./tfeco -p 3001
+tfeco -p 3001

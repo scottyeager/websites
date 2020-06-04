@@ -5,5 +5,4 @@ exit 1
 fi
 DEST=~/tfweb/testing/github/threefoldfoundation/www_ambassadors
 cd $DEST
-mv walker tfambas
-./tfambas -p 3002
+tfambas -p 3002

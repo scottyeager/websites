@@ -147,6 +147,29 @@ else
     git clone "git@github.com:threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
+# as ambassador website
+
+if [ -d "$DEST/www_ambassadors" ] ; then
+    echo " - www_ambassadors DIR ALREADY THERE, pulling it"
+    cd $DEST/www_ambassadors
+    git pull
+else
+    mkdir -p $DEST
+    cd $DEST
+    git clone "git@github.com:threefoldfoundation/www_ambassadors"  -b development www_ambassadors
+fi
+
+if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
+    echo " - threefold DIR ALREADY THERE, pulling it"
+    cd $DEST/www_ambassadors/public/threefold
+    git pull
+else
+    mkdir -p $DEST/www_ambassadors/public/threefold
+    cd  $DEST/www_ambassadors/public
+    git clone "git@github.com:threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
+fi
+
+
 # #if npm installed then will build the tfwebserver project
 # if [ -x "$(command -v npm)" ]; then
 # cd $DEST/www_conscious_internet
@@ -155,9 +178,17 @@ fi
 
 cd $DEST/www_conscious_internet
 sh build.sh
-
+cp -p walker /usr/local/bin/tfeco
 if ! [ -x "$(command -v tfeco)" ]; then
 echo 'Error: tfeco not installed' >&2
+exit 1
+fi
+
+cd $DEST/www_ambassadors
+sh build.sh
+cp -p walker /usr/local/bin/tfambas
+if ! [ -x "$(command -v tfambas)" ]; then
+echo 'Error: tfambas not installed' >&2
 exit 1
 fi
 
