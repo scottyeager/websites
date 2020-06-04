@@ -156,7 +156,7 @@ if [ -d "$DEST/www_ambassadors" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "git@github.com:threefoldfoundation/www_ambassadors"  -b development www_ambassadors
+    git clone "git@github.com:threefoldfoundation/www_ambassadors"  -b master www_ambassadors
 fi
 
 if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
