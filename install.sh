@@ -81,7 +81,7 @@ if [ -d "$DEST/websites" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "git@github.com:threefoldfoundation/websites"
+    git clone "https://github.com/threefoldfoundation/websites"
 fi
 
 cd $DEST/websites
@@ -106,7 +106,7 @@ if [ -d "$DEST2/publishingtools" ] ; then
 else
     mkdir -p $DEST2
     cd $DEST2
-    git clone "git@github.com:threebotserver/publishingtools.git"
+    git clone "https://github.com/threebotserver/publishingtools.git"
 fi
 cd $DEST2/publishingtools
 shards install
