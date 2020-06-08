@@ -135,7 +135,7 @@ if [ -d "$DEST/www_conscious_internet" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "git@github.com:threefoldfoundation/www_conscious_internet"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} www_conscious_internet
+    git clone "https://github.com/threefoldfoundation/www_conscious_internet"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} www_conscious_internet
 fi
 
 if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
@@ -145,7 +145,7 @@ if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
 else
     mkdir -p $DEST/www_conscious_internet/public/threefold
     cd  $DEST/www_conscious_internet/public
-    git clone "git@github.com:threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
+    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
 # as ambassador website
@@ -157,7 +157,7 @@ if [ -d "$DEST/www_ambassadors" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "git@github.com:threefoldfoundation/www_ambassadors"  -b master www_ambassadors
+    git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b master www_ambassadors
 fi
 
 if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
@@ -167,7 +167,7 @@ if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
 else
     mkdir -p $DEST/www_ambassadors/public/threefold
     cd  $DEST/www_ambassadors/public
-    git clone "git@github.com:threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
+    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
 fi
 
 
