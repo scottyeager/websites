@@ -10,9 +10,9 @@ exit 1
 fi
 
 tmux new-session -d -s websites 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_tfweb.sh'
-tmux new-window -t websites:1 -n ecosystem
+tmux new-window -t websites:1 -n conscious_internet
 # tmux select-window -t:0
-tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_ecosystem.sh' Enter
+tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_conscious_internet.sh' Enter
 
 sleep 1
 
@@ -37,17 +37,17 @@ while true ; do
 done
 
 set -e
-tmux select-window -t "ecosystem"
+tmux select-window -t "conscious_internet"
 
 set +ex
 while true ; do 
   result=$(tmux capture-pane -t 1 -p | grep -nE 'Kemal is ready to lead at http://0.0.0.0:3001') # -n shows line number
 #   echo "DEBUG: Result found is $result"
   if ! [ -z "$result" ] ; then
-    echo " - ECOSYSTEM WEBSITE UP!"
+    echo " - CONSCIOUS INTERNET WEBSITE UP!"
     break
   fi
-  echo "Waiting for ecosystem website to start..."
+  echo "Waiting for conscious internet website to start..."
   sleep 1
 done
 
@@ -59,7 +59,7 @@ while true ; do
   result=$(tmux capture-pane -t 2 -p | grep -nE 'Kemal is ready to lead at http://0.0.0.0:3002') # -n shows line number
 #   echo "DEBUG: Result found is $result"
   if ! [ -z "$result" ] ; then
-    echo " - ambassadors WEBSITE UP!"
+    echo " - AMBASSADORS WEBSITE UP!"
     break
   fi
   echo "Waiting for ambassadors website to start..."

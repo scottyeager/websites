@@ -4,6 +4,7 @@ set -ex
 # this script to install tfweb and conscious_internet
 # tfweb port is 3000
 # conscious internet port is 3001
+# ambassadors  port is 3002
 # you can set conscious_internet_port below if not set , default is 3001
 CONSCIOUS_INTERNET_PORT=
 # below vars are required by conscious_internet
