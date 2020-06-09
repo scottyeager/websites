@@ -91,9 +91,9 @@ fi
 cd $DEST/websites
 
 rm -f /usr/local/bin/tfweb 2>&1 > /dev/null
-rm -f /usr/local/bin/tfeco 2>&1 > /dev/null
+rm -f /usr/local/bin/tfconsc 2>&1 > /dev/null
 rm -f /usr/bin/tfweb 2>&1 > /dev/null
-rm -f /usr/bin/tfeco 2>&1 > /dev/null
+rm -f /usr/bin/tfconsc 2>&1 > /dev/null
 
 
 if ! [ -x "$(command -v crystal)" ]; then
@@ -182,9 +182,9 @@ fi
 
 cd $DEST/www_conscious_internet
 sh build.sh
-cp -p walker /usr/local/bin/tfeco
-if ! [ -x "$(command -v tfeco)" ]; then
-echo 'Error: tfeco not installed' >&2
+cp -p walker /usr/local/bin/tfconsc
+if ! [ -x "$(command -v tfconsc)" ]; then
+echo 'Error: tfconsc not installed' >&2
 exit 1
 fi
 

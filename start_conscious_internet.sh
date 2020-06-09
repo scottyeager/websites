@@ -1,8 +1,8 @@
 set -ex
-if ! [ -x "$(command -v tfeco)" ]; then
-echo 'Error: tfeco has not been installed' >&2
+if ! [ -x "$(command -v tfconsc)" ]; then
+echo 'Error: tfconsc has not been installed' >&2
 exit 1
 fi
 DEST=~/tfweb/testing/github/threefoldfoundation/www_conscious_internet
 cd $DEST
-tfeco -p 3001
+tfconsc -p 3001
