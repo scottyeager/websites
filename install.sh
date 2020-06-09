@@ -5,8 +5,12 @@ set -ex
 # tfweb port is 3000
 # conscious internet port is 3001
 # ambassadors  port is 3002
-# you can set conscious_internet_port below if not set , default is 3001
-CONSCIOUS_INTERNET_PORT=
+
+# CONSCIOUS_INTERNET_BRANCH is branch of https://github.com/threefoldfoundation/www_conscious_internet , default is development, should be production or staging
+CONSCIOUS_INTERNET_BRANCH=
+# AMBASSADORS_BRANCH is branch of repo https://github.com/threefoldfoundation/www_ambassadors , defaut is development, should be production or staging
+AMBASSADORS_BRANCH=
+
 # below vars are required by conscious_internet
 export SEND_GRID_KEY=
 export SUPPORT_EMAIL_FROM=
@@ -122,11 +126,7 @@ fi
 
 # start conscious internet websie
 
-
-# current working branch as per hamdy
-
-[[ -z "${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH}" ]] &&  export TFWEBSERVER_PROJECTS_PEOPLE_BRANCH=development
-[[ -z "${PUBLIC_REPO_BRANCH}" ]] &&  export PUBLIC_REPO_BRANCH=master
+[[ -z "${CONSCIOUS_INTERNET_BRANCH}" ]] &&  export CONSCIOUS_INTERNET_BRANCH=development
 
 if [ -d "$DEST/www_conscious_internet" ] ; then
     echo " - www_conscious_internet DIR ALREADY THERE, pulling it"
@@ -135,7 +135,7 @@ if [ -d "$DEST/www_conscious_internet" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "https://github.com/threefoldfoundation/www_conscious_internet"  -b ${TFWEBSERVER_PROJECTS_PEOPLE_BRANCH} www_conscious_internet
+    git clone "https://github.com/threefoldfoundation/www_conscious_internet"  -b ${CONSCIOUS_INTERNET_BRANCH} www_conscious_internet
 fi
 
 if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
@@ -148,7 +148,10 @@ else
     git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
 fi
 
+
 # as ambassador website
+
+[[ -z "${AMBASSADORS_BRANCH}" ]] &&  export AMBASSADORS_BRANCH=development
 
 if [ -d "$DEST/www_ambassadors" ] ; then
     echo " - www_ambassadors DIR ALREADY THERE, pulling it"
@@ -157,7 +160,7 @@ if [ -d "$DEST/www_ambassadors" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b master www_ambassadors
+    git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b ${AMBASSADORS_BRANCH} www_ambassadors
 fi
 
 if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
