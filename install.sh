@@ -4,12 +4,12 @@ set -ex
 # this script to install tfweb and conscious_internet
 # tfweb port is 3000
 # conscious internet port is 3001
-# ambassadors  port is 3002
+# community  port is 3002
 
 # CONSCIOUS_INTERNET_BRANCH is branch of https://github.com/threefoldfoundation/www_conscious_internet , default is development, should be production or staging
 CONSCIOUS_INTERNET_BRANCH=
-# AMBASSADORS_BRANCH is branch of repo https://github.com/threefoldfoundation/www_ambassadors , defaut is development, should be production or staging
-AMBASSADORS_BRANCH=
+# COMMUNITY_BRANCH is branch of repo https://github.com/threefoldfoundation/www_community , defaut is development, should be production or staging
+COMMUNITY_BRANCH=
 
 # below vars are required by conscious_internet
 export SEND_GRID_KEY=
@@ -149,36 +149,38 @@ else
 fi
 
 
-# as ambassador website
+as ambassador website
 
-# [[ -z "${AMBASSADORS_BRANCH}" ]] &&  export AMBASSADORS_BRANCH=development
+[[ -z "${COMMUNITY_BRANCH}" ]] &&  export COMMUNITY_BRANCH=development
 
-# if [ -d "$DEST/www_ambassadors" ] ; then
-#     echo " - www_ambassadors DIR ALREADY THERE, pulling it"
-#     cd $DEST/www_ambassadors
-#     git pull
-# else
-#     mkdir -p $DEST
-#     cd $DEST
-#     git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b ${AMBASSADORS_BRANCH} www_ambassadors
-# fi
+export DEST=/opt
+if [ -d "$DEST/www_community" ] ; then
+    echo " - www_community DIR ALREADY THERE, pulling it"
+    cd $DEST/www_community
+    git pull
+else
+    mkdir -p $DEST
+    cd $DEST
+    git clone "https://github.com/threefoldfoundation/www_community"  -b ${COMMUNITY_BRANCH} www_community
+fi
 
-# if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
-#     echo " - threefold DIR ALREADY THERE, pulling it"
-#     cd $DEST/www_ambassadors/public/threefold
-#     git pull
-# else
-#     mkdir -p $DEST/www_ambassadors/public/threefold
-#     cd  $DEST/www_ambassadors/public
-#     git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
-# fi
+if [ -d "$DEST/www_community/public/threefold" ] ; then
+    echo " - threefold DIR ALREADY THERE, pulling it"
+    cd $DEST/www_community/public/threefold
+    git pull
+else
+    mkdir -p $DEST/www_community/public/threefold
+    cd  $DEST/www_community/public
+    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
+fi
 
-
-# #if npm installed then will build the tfwebserver project
-# if [ -x "$(command -v npm)" ]; then
-# cd $DEST/www_conscious_internet
-# sh build-ui.sh
-# fi
+cd $DEST/www_community/
+bash build.sh
+cp -p walker /usr/local/bin/tfcom
+if ! [ -x "$(command -v tfcom)" ]; then
+echo 'Error: tfcom not installed' >&2
+exit 1
+fi
 
 cd $DEST/www_conscious_internet
 sh build.sh
@@ -188,13 +190,9 @@ echo 'Error: tfconsc not installed' >&2
 exit 1
 fi
 
-# cd $DEST/www_ambassadors
+# cd $DEST/www_community
 # sh build.sh
-# cp -p walker /usr/local/bin/tfambas
-# if ! [ -x "$(command -v tfambas)" ]; then
-# echo 'Error: tfambas not installed' >&2
-# exit 1
-# fi
+
 
 
 echo ' - WEBSITES DIR: $DEST/websites'
