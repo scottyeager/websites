@@ -77,7 +77,7 @@ echo 'Error: node is not installed, please install node' >&2
 exit 1
 fi
 
-export DEST=~/tfweb/testing/github/threefoldfoundation
+export DEST=~/code/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     cd $DEST/websites
     echo " - WEBSITES DIR ALREADY THERE, pullling it .."
@@ -102,7 +102,7 @@ exit 1
 fi
 
 
-export DEST2=~/tfweb/code
+export DEST2=~/code
 if [ -d "$DEST2/publishingtools" ] ; then
     echo " - publishingtools DIR ALREADY THERE, pullling it .."
     cd $DEST2/publishingtools
@@ -110,7 +110,7 @@ if [ -d "$DEST2/publishingtools" ] ; then
 else
     mkdir -p $DEST2
     cd $DEST2
-    git clone "https://github.com/threebotserver/publishingtools.git"
+    git clone "https://github.com/threefoldfoundation/publishingtools.git"
 fi
 cd $DEST2/publishingtools
 shards install
@@ -151,27 +151,27 @@ fi
 
 # as ambassador website
 
-[[ -z "${AMBASSADORS_BRANCH}" ]] &&  export AMBASSADORS_BRANCH=development
+# [[ -z "${AMBASSADORS_BRANCH}" ]] &&  export AMBASSADORS_BRANCH=development
 
-if [ -d "$DEST/www_ambassadors" ] ; then
-    echo " - www_ambassadors DIR ALREADY THERE, pulling it"
-    cd $DEST/www_ambassadors
-    git pull
-else
-    mkdir -p $DEST
-    cd $DEST
-    git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b ${AMBASSADORS_BRANCH} www_ambassadors
-fi
+# if [ -d "$DEST/www_ambassadors" ] ; then
+#     echo " - www_ambassadors DIR ALREADY THERE, pulling it"
+#     cd $DEST/www_ambassadors
+#     git pull
+# else
+#     mkdir -p $DEST
+#     cd $DEST
+#     git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b ${AMBASSADORS_BRANCH} www_ambassadors
+# fi
 
-if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
-    echo " - threefold DIR ALREADY THERE, pulling it"
-    cd $DEST/www_ambassadors/public/threefold
-    git pull
-else
-    mkdir -p $DEST/www_ambassadors/public/threefold
-    cd  $DEST/www_ambassadors/public
-    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
-fi
+# if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
+#     echo " - threefold DIR ALREADY THERE, pulling it"
+#     cd $DEST/www_ambassadors/public/threefold
+#     git pull
+# else
+#     mkdir -p $DEST/www_ambassadors/public/threefold
+#     cd  $DEST/www_ambassadors/public
+#     git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
+# fi
 
 
 # #if npm installed then will build the tfwebserver project
@@ -188,13 +188,13 @@ echo 'Error: tfconsc not installed' >&2
 exit 1
 fi
 
-cd $DEST/www_ambassadors
-sh build.sh
-cp -p walker /usr/local/bin/tfambas
-if ! [ -x "$(command -v tfambas)" ]; then
-echo 'Error: tfambas not installed' >&2
-exit 1
-fi
+# cd $DEST/www_ambassadors
+# sh build.sh
+# cp -p walker /usr/local/bin/tfambas
+# if ! [ -x "$(command -v tfambas)" ]; then
+# echo 'Error: tfambas not installed' >&2
+# exit 1
+# fi
 
 
 echo ' - WEBSITES DIR: $DEST/websites'
