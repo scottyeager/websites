@@ -32,6 +32,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "deb https://dist.crystal-lang.org/apt crystal main" > /etc/apt/sources.list.d/crystal.list  ; \
         apt-get update  ; \
         apt install crystal -y
+        # workaround to fix crystal issue
+        apt remove crystal -y
+        wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal_0.34.0-1_amd64.deb
+        dpkg -i crystal_0.34.0-1_amd64.deb && rm crystal_0.34.0-1_amd64.deb
 
     fi
     # install nodejs
@@ -51,7 +55,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         exit 1
         fi
 
-    brew install crystal
+    brew install crystal 0.35.0
+    brew uninstall --ignore-dependencies crystal 0.35.0
+    brew install crystal 0.34.0
     brew install git
     # brew install node
     fi
