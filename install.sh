@@ -23,8 +23,9 @@ if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "linux-gnu"* ]]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-
-    apt-get install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev wget tmux
+    apt update
+    apt install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev;\
+    apt install libssh2.1-dev  libssh-dev wget tmux sudo -y
 
     if ! [ -x "$(command -v crystal)" ]; then
         curl -sSL https://dist.crystal-lang.org/apt/setup.sh |  bash ; \
@@ -83,7 +84,7 @@ echo 'Error: node is not installed, please install node' >&2
 exit 1
 fi
 
-export DEST=~/code/github/threefoldfoundation
+export DEST=~/tfweb/testing/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     cd $DEST/websites
     echo " - WEBSITES DIR ALREADY THERE, pullling it .."
@@ -151,15 +152,13 @@ if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
 else
     mkdir -p $DEST/www_conscious_internet/public/threefold
     cd  $DEST/www_conscious_internet/public
-    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
+    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
 fi
 
 
-as ambassador website
 
 [[ -z "${COMMUNITY_BRANCH}" ]] &&  export COMMUNITY_BRANCH=development
 
-export DEST=/opt
 if [ -d "$DEST/www_community" ] ; then
     echo " - www_community DIR ALREADY THERE, pulling it"
     cd $DEST/www_community
