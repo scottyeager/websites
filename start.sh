@@ -17,8 +17,8 @@ tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/w
 sleep 1
 
 # tmux select-window -t:1
-tmux new-window -t websites:2 -n ambassadors
-tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_ambassadors.sh' Enter
+tmux new-window -t websites:2 -n community
+tmux send-keys -t websites  C-z 'cd ~/tfweb/testing/github/threefoldfoundation/websites;sh start_community.sh' Enter
 
 sleep 1
 
@@ -52,17 +52,17 @@ while true ; do
 done
 
 set -e
-tmux select-window -t "ambassadors"
+tmux select-window -t "community"
 
 set +ex
 while true ; do
   result=$(tmux capture-pane -t 2 -p | grep -nE 'Kemal is ready to lead at http://0.0.0.0:3002') # -n shows line number
 #   echo "DEBUG: Result found is $result"
   if ! [ -z "$result" ] ; then
-    echo " - AMBASSADORS WEBSITE UP!"
+    echo " - community WEBSITE UP!"
     break
   fi
-  echo "Waiting for ambassadors website to start..."
+  echo "Waiting for community website to start..."
   sleep 1
 done
 

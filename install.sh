@@ -4,12 +4,12 @@ set -ex
 # this script to install tfweb and conscious_internet
 # tfweb port is 3000
 # conscious internet port is 3001
-# ambassadors  port is 3002
+# community  port is 3002
 
 # CONSCIOUS_INTERNET_BRANCH is branch of https://github.com/threefoldfoundation/www_conscious_internet , default is development, should be production or staging
 CONSCIOUS_INTERNET_BRANCH=
-# AMBASSADORS_BRANCH is branch of repo https://github.com/threefoldfoundation/www_ambassadors , defaut is development, should be production or staging
-AMBASSADORS_BRANCH=
+# COMMUNITY_BRANCH is branch of repo https://github.com/threefoldfoundation/www_community , defaut is development, should be production or staging
+COMMUNITY_BRANCH=
 
 # below vars are required by conscious_internet
 export SEND_GRID_KEY=
@@ -23,8 +23,9 @@ if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "linux-gnu"* ]]; then
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-
-    apt-get install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev wget tmux
+    apt update
+    apt install -y build-essential curl libevent-dev libssl-dev libxml2-dev libyaml-dev libgmp-dev;\
+    apt install libssh2.1-dev  libssh-dev wget tmux sudo -y
 
     if ! [ -x "$(command -v crystal)" ]; then
         curl -sSL https://dist.crystal-lang.org/apt/setup.sh |  bash ; \
@@ -32,6 +33,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "deb https://dist.crystal-lang.org/apt crystal main" > /etc/apt/sources.list.d/crystal.list  ; \
         apt-get update  ; \
         apt install crystal -y
+        # workaround to fix crystal issue
+        apt remove crystal -y
+        wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal_0.34.0-1_amd64.deb
+        dpkg -i crystal_0.34.0-1_amd64.deb && rm crystal_0.34.0-1_amd64.deb
 
     fi
     # install nodejs
@@ -51,7 +56,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         exit 1
         fi
 
-    brew install crystal
+    brew install crystal 0.35.0
+    brew uninstall --ignore-dependencies crystal 0.35.0
+    brew install crystal 0.34.0
     brew install git
     # brew install node
     fi
@@ -102,7 +109,7 @@ exit 1
 fi
 
 
-export DEST2=~/tfweb/code
+export DEST2=~/code
 if [ -d "$DEST2/publishingtools" ] ; then
     echo " - publishingtools DIR ALREADY THERE, pullling it .."
     cd $DEST2/publishingtools
@@ -110,7 +117,7 @@ if [ -d "$DEST2/publishingtools" ] ; then
 else
     mkdir -p $DEST2
     cd $DEST2
-    git clone "https://github.com/threebotserver/publishingtools.git"
+    git clone "https://github.com/threefoldfoundation/publishingtools.git"
 fi
 cd $DEST2/publishingtools
 shards install
@@ -145,40 +152,40 @@ if [ -d "$DEST/www_conscious_internet/public/threefold" ] ; then
 else
     mkdir -p $DEST/www_conscious_internet/public/threefold
     cd  $DEST/www_conscious_internet/public
-    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  ${PUBLIC_REPO_BRANCH} threefold
-fi
-
-
-# as ambassador website
-
-[[ -z "${AMBASSADORS_BRANCH}" ]] &&  export AMBASSADORS_BRANCH=development
-
-if [ -d "$DEST/www_ambassadors" ] ; then
-    echo " - www_ambassadors DIR ALREADY THERE, pulling it"
-    cd $DEST/www_ambassadors
-    git pull
-else
-    mkdir -p $DEST
-    cd $DEST
-    git clone "https://github.com/threefoldfoundation/www_ambassadors"  -b ${AMBASSADORS_BRANCH} www_ambassadors
-fi
-
-if [ -d "$DEST/www_ambassadors/public/threefold" ] ; then
-    echo " - threefold DIR ALREADY THERE, pulling it"
-    cd $DEST/www_ambassadors/public/threefold
-    git pull
-else
-    mkdir -p $DEST/www_ambassadors/public/threefold
-    cd  $DEST/www_ambassadors/public
     git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
 fi
 
 
-# #if npm installed then will build the tfwebserver project
-# if [ -x "$(command -v npm)" ]; then
-# cd $DEST/www_conscious_internet
-# sh build-ui.sh
-# fi
+
+[[ -z "${COMMUNITY_BRANCH}" ]] &&  export COMMUNITY_BRANCH=development
+
+if [ -d "$DEST/www_community" ] ; then
+    echo " - www_community DIR ALREADY THERE, pulling it"
+    cd $DEST/www_community
+    git pull
+else
+    mkdir -p $DEST
+    cd $DEST
+    git clone "https://github.com/threefoldfoundation/www_community"  -b ${COMMUNITY_BRANCH} www_community
+fi
+
+if [ -d "$DEST/www_community/public/threefold" ] ; then
+    echo " - threefold DIR ALREADY THERE, pulling it"
+    cd $DEST/www_community/public/threefold
+    git pull
+else
+    mkdir -p $DEST/www_community/public/threefold
+    cd  $DEST/www_community/public
+    git clone "https://github.com/threefoldfoundation/data_threefold_projects_friends"  -b  master threefold
+fi
+
+cd $DEST/www_community/
+bash build.sh
+cp -p walker /usr/local/bin/tfcom
+if ! [ -x "$(command -v tfcom)" ]; then
+echo 'Error: tfcom not installed' >&2
+exit 1
+fi
 
 cd $DEST/www_conscious_internet
 sh build.sh
@@ -188,13 +195,9 @@ echo 'Error: tfconsc not installed' >&2
 exit 1
 fi
 
-cd $DEST/www_ambassadors
-sh build.sh
-cp -p walker /usr/local/bin/tfambas
-if ! [ -x "$(command -v tfambas)" ]; then
-echo 'Error: tfambas not installed' >&2
-exit 1
-fi
+# cd $DEST/www_community
+# sh build.sh
+
 
 
 echo ' - WEBSITES DIR: $DEST/websites'
