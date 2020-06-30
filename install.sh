@@ -56,10 +56,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         exit 1
         fi
 
-    brew install crystal 0.35.0
-    brew uninstall --ignore-dependencies crystal 0.35.0
-    brew install crystal 0.34.0
+    #brew install crystal ; \
+    #brew uninstall crystal ; \
+    wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal-0.34.0-1.pkg -O crystal-0.34.0-1.pkg && \
+    sudo installer -pkg crystal-0.34.0-1.pkg -target /Applications && rm crystal-0.34.0-1.pkg
+
+    if ! [ -x "$(command -v git)" ]; then
     brew install git
+    exit 1
+    fi
     # brew install node
     fi
     # install nodejs
@@ -74,10 +79,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 
-if ! [ -x "$(command -v git)" ]; then
-echo 'Error: git is not installed, please install git' >&2
-exit 1
-fi
 
 if ! [ -x "$(command -v node)" ]; then
 echo 'Error: node is not installed, please install node' >&2
@@ -117,7 +118,7 @@ if [ -d "$DEST2/publishingtools" ] ; then
 else
     mkdir -p $DEST2
     cd $DEST2
-    git clone "https://github.com/threefoldfoundation/publishingtools.git"
+    git clone "https://github.com/threefoldfoundation/publishingtools.git" -b 0.34-version
 fi
 cd $DEST2/publishingtools
 shards install
