@@ -15,5 +15,5 @@ starting point to run all websites on your local machine
 a oneliner gets you going
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/install_tfweb.sh)"
 ```
