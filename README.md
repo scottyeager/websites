@@ -12,8 +12,13 @@ starting point to run all websites on your local machine
 
 ## to get started
 
-a oneliner gets you going
+1 - build web env tool
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/install_tfweb.sh)"
+```
+2 - start web env tool
+
+```
+https://github.com/threefoldfoundation/websites/blob/master/start_tfweb.sh
 ```
