@@ -105,7 +105,7 @@ if [ -d "$DEST2/publishingtools" ] ; then
 else
     mkdir -p $DEST2
     cd $DEST2
-    git clone "https://github.com/threefoldfoundation/publishingtools.git" -b 0.34-version
+    git clone "https://github.com/threefoldfoundation/publishingtools.git" 
 fi
 cd $DEST2/publishingtools
 shards install
