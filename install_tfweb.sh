@@ -45,8 +45,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     #brew install crystal ; \
     #brew uninstall crystal ; \
-    wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal-0.34.0-1.pkg -O crystal-0.34.0-1.pkg && \
-    sudo installer -pkg crystal-0.34.0-1.pkg -target /Applications && rm crystal-0.34.0-1.pkg
+    wget https://github.com/crystal-lang/crystal/releases/download/0.35.1/crystal-0.35.1-1.pkg -O crystal-0.35.1-1.pkg && \
+    sudo installer -pkg crystal-0.35.1-1.pkg -target /Applications && rm crystal-0.35.1-1.pkg
 
     if ! [ -x "$(command -v git)" ]; then
     brew install git
