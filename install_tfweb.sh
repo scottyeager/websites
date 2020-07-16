@@ -35,6 +35,18 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+		if ! [ -x "$(command -v openssl)" ]; then
+			brew install openssl
+		fi
+			ssl_version=$(openssl version | awk {'print $2'})
+		if ! [[ $ssl_version=="1.1.1g" ]] ; then
+			brew unlink openssl && brew link openssl --force
+			echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.bash_profile
+		fi
+		export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+		export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+		export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+		export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
     if ! [ -x "$(command -v crystal)" ]; then
 
