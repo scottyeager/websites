@@ -109,7 +109,7 @@ exit 1
 fi
 
 
-export DEST2=~/code
+export DEST2=~/code_testing
 if [ -d "$DEST2/publishingtools" ] ; then
     echo " - publishingtools DIR ALREADY THERE, pullling it .."
     cd $DEST2/publishingtools
