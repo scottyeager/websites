@@ -54,4 +54,4 @@ branchswitch = true
 srcdir = ""
 #environment name (for example:  production, staging, testing)
 environment = "testing"
-domain = "blog2.threefold.io
+domain = "blog2.threefold.io"
