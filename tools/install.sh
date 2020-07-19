@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 # this script to install tfweb and conscious_internet
 # tfweb port is 3000
