@@ -20,11 +20,10 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "deb https://dist.crystal-lang.org/apt crystal main" > /etc/apt/sources.list.d/crystal.list  ; \
         apt-get update  ; \
         apt install crystal -y
-        # workaround to fix crystal issue
-        apt remove crystal -y
-        wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal_0.34.0-1_amd64.deb
-        dpkg -i crystal_0.34.0-1_amd64.deb && rm crystal_0.34.0-1_amd64.deb
-
+        # # workaround to fix crystal issue
+        # apt remove crystal -y
+        # wget https://github.com/crystal-lang/crystal/releases/download/0.34.0/crystal_0.34.0-1_amd64.deb
+        # dpkg -i crystal_0.34.0-1_amd64.deb && rm crystal_0.34.0-1_amd64.deb
     fi
     # install nodejs
     if ! [ -x "$(command -v node)" ]; then
@@ -55,17 +54,17 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         exit 1
         fi
 
-    #brew install crystal ; \
-    #brew uninstall crystal ; \
-    wget https://github.com/crystal-lang/crystal/releases/download/0.35.1/crystal-0.35.1-1.pkg -O crystal-0.35.1-1.pkg && \
-    sudo installer -pkg crystal-0.35.1-1.pkg -target /Applications && rm crystal-0.35.1-1.pkg
+        brew install crystal
+        #brew uninstall crystal ; \
+        # wget https://github.com/crystal-lang/crystal/releases/download/0.35.1/crystal-0.35.1-1.pkg -O crystal-0.35.1-1.pkg && \
+        # sudo installer -pkg crystal-0.35.1-1.pkg -target /Applications && rm crystal-0.35.1-1.pkg
+    fi
 
     if ! [ -x "$(command -v git)" ]; then
     brew install git
     exit 1
     fi
-    # brew install node
-    fi
+
     # install nodejs
     if ! [ -x "$(command -v node)" ]; then
     brew install node
@@ -109,7 +108,7 @@ exit 1
 fi
 
 
-export DEST2=~/code_testing
+export DEST2=~/code/github/crystaluniverse
 if [ -d "$DEST2/publishingtools" ] ; then
     echo " - publishingtools DIR ALREADY THERE, pullling it .."
     cd $DEST2/publishingtools
@@ -125,5 +124,24 @@ bash build.sh
 
 if ! [ -x "$(command -v tfweb)" ]; then
 echo 'Error: tfweb did not build' >&2
+exit 1
+fi
+
+export DEST2=~/code/github/threefoldfoundation
+if [ -d "$DEST2/simulator" ] ; then
+    echo " - simulator DIR ALREADY THERE, pullling it .."
+    cd $DEST2/publishingtools
+    git pull
+else
+    mkdir -p $DEST2
+    cd $DEST2
+    git clone "https://github.com/threefoldfoundation/simulator.git" 
+fi
+cd $DEST2/simulator
+shards install
+bash build.sh
+
+if ! [ -x "$(command -v tfsimulator)" ]; then
+echo 'Error: tfsimulator did not build' >&2
 exit 1
 fi
