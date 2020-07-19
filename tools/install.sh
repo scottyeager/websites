@@ -50,13 +50,7 @@ if [ -d "$DEST/websites" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    if ! [ -x "$(command -v ct)" ]; then
-    git clone -–depth 1 "https://github.com/threefoldfoundation/websites"
-    exit 1
-    else
-    ct git pull "https://github.com/threefoldfoundation/websites"
-    fi        
-    
+    git clone -–depth 1 "https://github.com/threefoldfoundation/websites"    
 fi
 
 cd $DEST/websites
