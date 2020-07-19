@@ -130,7 +130,7 @@ fi
 export DEST2=~/code/github/threefoldfoundation
 if [ -d "$DEST2/simulator" ] ; then
     echo " - simulator DIR ALREADY THERE, pullling it .."
-    cd $DEST2/publishingtools
+    cd $DEST2/simulator
     git pull
 else
     mkdir -p $DEST2
@@ -138,6 +138,25 @@ else
     git clone "https://github.com/threefoldfoundation/simulator.git" 
 fi
 cd $DEST2/simulator
+shards install
+bash build.sh
+
+if ! [ -x "$(command -v tfsimulator)" ]; then
+echo 'Error: tfsimulator did not build' >&2
+exit 1
+fi
+
+export DEST2=~/code/github/threefoldfoundation
+if [ -d "$DEST2/www_community" ] ; then
+    echo " - www_community DIR ALREADY THERE, pullling it .."
+    cd $DEST2/www_community
+    git pull
+else
+    mkdir -p $DEST2
+    cd $DEST2
+    git clone "https://github.com/threefoldfoundation/www_community.git" 
+fi
+cd $DEST2/www_community
 shards install
 bash build.sh
 
