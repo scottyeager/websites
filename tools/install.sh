@@ -51,10 +51,10 @@ else
     mkdir -p $DEST
     cd $DEST
     if ! [ -x "$(command -v ct)" ]; then
-    ct git pull "https://github.com/threefoldfoundation/websites"
+    git clone -–depth 1 "https://github.com/threefoldfoundation/websites"
     exit 1
     else
-    git clone -–depth 1 "https://github.com/threefoldfoundation/websites"
+    ct git pull "https://github.com/threefoldfoundation/websites"
     fi        
     
 fi
