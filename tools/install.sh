@@ -51,7 +51,7 @@ ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
 export DEST=~/code/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     cd $DEST/websites
-    echo " - WEBSITES DIR ALREADY THERE, pullling it .."
+    echo " - WEBSITES DIR ALREADY THERE, pulling it .."
     git pull
 else
     mkdir -p $DEST
@@ -63,13 +63,15 @@ cd $DEST/websites
 
 rm -f /usr/local/bin/tfweb 2>&1 > /dev/null
 rm -f /usr/local/bin/ct 2>&1 > /dev/null
+rm -f /usr/local/bin/tfsimulator 2>&1 > /dev/null
 
 rsync -rav "$DEST/websites/bin/osx/" /usr/local/bin/
 
 chmod 770 /usr/local/bin/ct
 chmod 770 /usr/local/bin/tfweb
 chmod 770 /usr/local/bin/tfsimulator
-# chmod 770 /usr/local/bin/tfweb
+#the community webserver
+# chmod 770 /usr/local/bin/tfwebc
 
 if ! [ -x "$(command -v ct)" ]; then
 echo 'Error: ct did not install' >&2

@@ -97,16 +97,16 @@ fi
 cd $DEST/websites
 
 rm -f /usr/local/bin/tfweb 2>&1 > /dev/null
-rm -f /usr/local/bin/tfconsc 2>&1 > /dev/null
-rm -f /usr/bin/tfweb 2>&1 > /dev/null
-rm -f /usr/bin/tfconsc 2>&1 > /dev/null
-
+rm -f /usr/local/bin/tfwebc 2>&1 > /dev/null
+rm -f /usr/local/bin/ct 2>&1 > /dev/null
+rm -f /usr/local/bin/tfsimulator 2>&1 > /dev/null
 
 if ! [ -x "$(command -v crystal)" ]; then
 echo 'Error: crystal lang is not installed, please install crystal lang' >&2
 exit 1
 fi
 
+#TODO: CRYSTALTOOLS
 
 export DEST2=~/code/github/crystaluniverse
 if [ -d "$DEST2/publishingtools" ] ; then
@@ -160,7 +160,7 @@ cd $DEST2/www_community
 shards install
 bash build.sh
 
-if ! [ -x "$(command -v tfsimulator)" ]; then
-echo 'Error: tfsimulator did not build' >&2
+if ! [ -x "$(command -v tfwebc)" ]; then
+echo 'Error: tfwebc did not build' >&2
 exit 1
 fi
