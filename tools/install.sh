@@ -39,7 +39,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     brew install rsync
     fi    
 
+    if ! [ -x "$(command -v gnuplot)" ]; then
+    brew install gnuplot
+    fi
+
 fi
+
+ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
 
 
 export DEST=~/code/github/threefoldfoundation
@@ -62,6 +68,8 @@ rsync -rav "$DEST/websites/bin/osx/" /usr/local/bin/
 
 chmod 770 /usr/local/bin/ct
 chmod 770 /usr/local/bin/tfweb
+chmod 770 /usr/local/bin/tfsimulator
+# chmod 770 /usr/local/bin/tfweb
 
 if ! [ -x "$(command -v ct)" ]; then
 echo 'Error: ct did not install' >&2

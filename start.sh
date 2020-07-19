@@ -1,3 +1,9 @@
+set -ex
+
+
+exit 0
+
+
 set -e
 tmux kill-session -t websites > /dev/null 2>&1 && echo ""
 # tmux kill-server > /dev/null 2>&1 ; echo ""
