@@ -7,11 +7,15 @@ starting point to run all websites on your local machine
 - websites
 
 ## get started
-
+ - install tfweb
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/tools/install.sh)"
 ```
+ - start tfweb 
+ ```
+tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 
+```
 
 ## developers
 
