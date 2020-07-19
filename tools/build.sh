@@ -145,22 +145,3 @@ if ! [ -x "$(command -v tfsimulator)" ]; then
 echo 'Error: tfsimulator did not build' >&2
 exit 1
 fi
-
-export DEST2=~/code/github/threefoldfoundation
-if [ -d "$DEST2/www_community" ] ; then
-    echo " - www_community DIR ALREADY THERE, pullling it .."
-    cd $DEST2/www_community
-    git pull
-else
-    mkdir -p $DEST2
-    cd $DEST2
-    git clone "https://github.com/threefoldfoundation/www_community.git" 
-fi
-cd $DEST2/www_community
-shards install
-bash build.sh
-
-if ! [ -x "$(command -v tfwebc)" ]; then
-echo 'Error: tfwebc did not build' >&2
-exit 1
-fi
