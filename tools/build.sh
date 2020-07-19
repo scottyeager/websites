@@ -84,7 +84,7 @@ echo 'Error: node is not installed, please install node' >&2
 exit 1
 fi
 
-export DEST=~/tfweb/testing/github/threefoldfoundation
+export DEST=~/code/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     cd $DEST/websites
     echo " - WEBSITES DIR ALREADY THERE, pullling it .."

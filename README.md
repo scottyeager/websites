@@ -8,17 +8,18 @@ starting point to run all websites on your local machine
 - conscious internet site
 - community
 
-
-
-## to get started
-
-1 - build web env tool
+## get started
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/install_tfweb.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/tools/install.sh)"
 ```
-2 - start web env tool
+
+
+## developers
+
+### to build
 
 ```
-/bin/bash -c "$(curl -fsSL  https://raw.githubusercontent.com/threefoldfoundation/websites/master/start_tfweb.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/build.sh)"
 ```
+
