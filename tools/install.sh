@@ -50,7 +50,7 @@ if [ -d "$DEST/websites" ] ; then
 else
     mkdir -p $DEST
     cd $DEST
-    git clone -–depth 1 "https://github.com/threefoldfoundation/websites"    
+    git clone --depth 1 "https://github.com/threefoldfoundation/websites"    
 fi
 
 cd $DEST/websites
