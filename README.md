@@ -22,6 +22,6 @@ tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 ### to build
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/build.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/tools/build.sh)"
 ```
 
