@@ -4,18 +4,15 @@
 port = 3000
 addr = "0.0.0.0"
 
-
-
 [[wiki]]
-name = "news"
-url = "git@github.com:threefoldfoundation/info_tf_news.git"
+name = "wiki"
+url = "git@github.com:threefoldfoundation/info_threefold.git"
 path = ""
 autocommit = false
 branch = "development"
 branchswitch = false
 srcdir = "src"
 environment = ""
-auth = true
 
 [[wiki]]
 name = "sdk"
