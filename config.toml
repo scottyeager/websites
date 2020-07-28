@@ -31,9 +31,33 @@ title = "Marketplace Manual"
 url = "git@github.com:threefoldfoundation/info_manual_tfgrid_testnet.git"
 path = ""
 autocommit = false
-branch = "development"
+branch = "master"
 branchswitch = false
 srcdir = "src"
+environment = ""
+
+
+[[wiki]]
+name = "publishingtools"
+title = "publishingtools"
+url = "git@github.com:crystaluniverse/publishingtools.git"
+path = ""
+autocommit = false
+branch = "development"
+branchswitch = false
+srcdir = "mydocs"
+environment = ""
+
+
+[[wiki]]
+name = "crystaltools"
+title = "crystaltools"
+url = "git@github.com:crystaluniverse/crystaltools.git"
+path = ""
+autocommit = false
+branch = "master"
+branchswitch = false
+srcdir = "mydocs"
 environment = ""
 
 
