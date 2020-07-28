@@ -25,6 +25,17 @@ branchswitch = false
 srcdir = "src"
 environment = ""
 
+[[wiki]]
+name = "marketplace"
+title = "Marketplace Manual"
+url = "git@github.com:threefoldfoundation/info_manual_tfgrid_testnet.git"
+path = ""
+autocommit = false
+branch = "development"
+branchswitch = false
+srcdir = "src"
+environment = ""
+
 
 #website
 [[www]]
