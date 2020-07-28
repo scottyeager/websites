@@ -16,6 +16,8 @@ fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
+    set +ex
+
     if ! [ -x "$(command -v brew)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     exit 1
@@ -39,15 +41,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     brew install rsync
     fi    
 
-    if ! [ -x "$(command -v gnuplot)" ]; then
-    brew install gnuplot
-    fi
+#     if ! [ -x "$(command -v gnuplot)" ]; then
+#     brew install gnuplot
+#     fi
 
 fi
 
 ssh-keygen -F github.com || ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-
+set -ex
+    
 export DEST=~/code/github/threefoldfoundation
 if [ -d "$DEST/websites" ] ; then
     cd $DEST/websites
