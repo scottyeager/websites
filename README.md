@@ -13,7 +13,7 @@ starting point to run all websites on your local machine
 ```
  - start tfweb 
  ```
-tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
+cd ~/code/github/crystaluniverse/publishingtools;tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 
 ```
 
