@@ -25,3 +25,14 @@ tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/threefoldfoundation/websites/master/tools/build.sh)"
 ```
 
+## information about tools inside
+
+- https://github.com/crystaluniverse/publishingtools (is the tfweb, our webserver which can host wiki's, websites, blogs, ...)
+   - unfortunately no manual, needs to be created
+- https://github.com/crystaluniverse/crystaltools
+   - there is a manual inside
+   
+when starting tfweb, it will also start the manuals for publishingtools & crystaltools
+
+
+
