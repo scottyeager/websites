@@ -16,6 +16,7 @@ starting point to run all websites on your local machine
 cd ~/code/github/crystaluniverse/publishingtools;tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 
 ```
+important to start in publishingtools dir otherwise it will not start the blog
 
 ## developers
 
