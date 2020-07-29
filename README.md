@@ -35,5 +35,18 @@ important to start in publishingtools dir otherwise it will not start the blog
    
 when starting tfweb, it will also start the manuals for publishingtools & crystaltools
 
+## troubeshooting
+
+### OSX
+
+- once brew installed do
+
+```
+brew update
+brew upgrade
+```
+
+and try again, see if brew worked well
+
 
 
