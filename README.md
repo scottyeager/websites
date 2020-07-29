@@ -16,7 +16,13 @@ starting point to run all websites on your local machine
 cd ~/code/github/crystaluniverse/publishingtools;tfweb -c ~/code/github/threefoldfoundation/websites/config.toml
 
 ```
-important to start in publishingtools dir otherwise it will not start the blog
+- important to start in publishingtools dir otherwise it will not start the blog
+- best to have your sshkey loaded see
+    - https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+    - https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
+- note: make sure you are in your terminal and have your prompt, don't type the $ sign at front of the commands, this is part of your prompt
+
+
 
 ## developers
 
