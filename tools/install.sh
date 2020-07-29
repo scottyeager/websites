@@ -6,12 +6,13 @@ set -ex
 
 if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo OS is not supported ..
-    exist 1
+    exit 1
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "make sure git, mc, tmux installed" 
     #TODO: implement
+    exit 1
 fi
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
