@@ -34,7 +34,7 @@ to see if it succeeded
 
 ```
 ssh-add -l
-2048 SHA256:olDf62/m6YOwIxYWUzrB6/XE4J4CalsxnaMpPuIEQpk /Users/despiegk/.ssh/kds (RSA)
+2048 SHA256:olDf62/m6YOwIxYWUzrB6/XE4J4CalsxnaMpPuIEQpk /Users/despiegk/.ssh/id_rsa (RSA)
 ```
 
 ## developers
