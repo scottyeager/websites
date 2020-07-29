@@ -20,17 +20,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 
     if ! [ -x "$(command -v brew)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-    exit 1
     fi
-
+    
     if ! [ -x "$(command -v mc)" ]; then
     brew install mc
-    exit 1
     fi    
+    
+    brew install libyaml
 
     if ! [ -x "$(command -v git)" ]; then
     brew install git
-    exit 1
     fi
 
     if ! [ -x "$(command -v tmux)" ]; then
