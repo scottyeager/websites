@@ -24,6 +24,19 @@ cd ~/code/github/crystaluniverse/publishingtools;tfweb -c ~/code/github/threefol
 
 ![](img/sshgen.png)
 
+to manually add your ssh to the agent
+
+```
+ssh-add ~/.ssh/id_rsa
+```
+
+to see if it succeeded
+
+```
+ssh-add -l
+2048 SHA256:olDf62/m6YOwIxYWUzrB6/XE4J4CalsxnaMpPuIEQpk /Users/despiegk/.ssh/kds (RSA)
+```
+
 ## developers
 
 ### to build
