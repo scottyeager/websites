@@ -22,7 +22,7 @@ cd ~/code/github/crystaluniverse/publishingtools;tfweb -c ~/code/github/threefol
     - https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 - note: make sure you are in your terminal and have your prompt, don't type the $ sign at front of the commands, this is part of your prompt
 
-
+![](img/sshgen.png)
 
 ## developers
 
